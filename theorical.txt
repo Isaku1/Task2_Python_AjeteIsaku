@@ -1,0 +1,17 @@
+1. What is the difference between a list and a dictionary in Python?
+A list and a dictionary are both ways to store collections of data, but they solve different problems.
+A list is an ordered sequence of items. You access elements by their position for example: index 0, index 1, and so on. It's the right structure when the order matters and when you just need to store a series of values, like a list of names, numbers, or results.
+A dictionary, on the other hand, stores data as key-value pairs. You don't access things by position, you access them by a meaningful label, a key. So instead of asking "give me item at index 2," you ask "give me the value for the key 'username'." That makes dictionaries the right choice when your data has structure and meaning behind it, like storing attributes of a user, a config file, or any situation where you need to look something up by name rather than by position.
+The mental model is: a list is like a numbered shelf, a dictionary is like a labeled drawer. Both store things, but you navigate them differently.
+
+2. What is the purpose of try-except in Python and when should it be used?
+try-except exists because in real-world programs, things go wrong and you need a way to handle those failures gracefully instead of letting the whole program crash.
+The idea is simple: you wrap a block of code in a try that you expect might fail maybe you're reading a file that might not exist, or calling an API that might time out, or converting user input that might not be a valid number. If something goes wrong, Python jumps to the except block instead of crashing, and you decide what to do: show an error message, retry, use a default value, log the issue, whatever makes sense.
+The important nuance here is when to use it. You shouldn't wrap everything in try-except just to silence errors that’s a bad habit that hides bugs. You use it specifically around code that interacts with the outside world (files, databases, APIs, user input) or any operation where failure is a realistic and expected possibility, not a bug. The goal is to control failure your program stays alive and does something sensible instead of blowing up unexpectedly.
+
+
+3. What is the difference between map() and lambda?
+These two are often seen together, which causes confusion, but they're actually solving completely different problems.
+A lambda is simply a way to write a small, anonymous function in a single line. Instead of defining a full function with def, you write it inline. It's not a special operation it's just a compact function. You'd use it when the function is short and you don't need to reuse it elsewhere, so giving it a full name feels unnecessary.
+map(), on the other hand, is a built-in function that applies a function to every item in an iterable and returns the results. It's about iteration and transformation take this collection, run this logic on each element, give me back the transformed version.
+They're often combined map(lambda x: x * 2, numbers) but that doesn't mean they're the same thing. You can pass a regular named function to map(), and you can use a lambda completely outside of map(). Think of lambda as the tool (a function), and map() as the operation (apply that tool across a collection). One defines behavior, the other applies it.
